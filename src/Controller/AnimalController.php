@@ -2,18 +2,21 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Animal;
+use App\Repository\AnimalRepository;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AnimalController extends AbstractController
 {
     /**
      * @Route("/", name="animals")
      */
-    public function index()
+    public function index(AnimalRepository $repo)
     {
+        $animals = $repo->findAll();
         return $this->render('animal/index.html.twig', [
-            'controller_name' => 'AnimalController',
+            "animals" => $animals
         ]);
     }
 }

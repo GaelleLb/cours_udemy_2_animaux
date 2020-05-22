@@ -4,6 +4,17 @@
 
 {% block monTitre %} Liste des animaux{% endblock %}
 {% block body %}
-    <h1>Coucou</h1>
+    {% for animal in animals %}
+    <div class="row align-items-center p-2 m-2">
+        <div class="col-2 text-center">
+            <img src="{{ asset('images/' ~ animal.image) }}" alt="">
+        </div>
+        <div class=" offset-1 col-auto">
+            <h2>{{ animal.nom }}</h2>
+            <div>{{ animal.description}}</div>
+        </div>
+    </div>
+    
+    {% endfor %}
 
 {% endblock %}
