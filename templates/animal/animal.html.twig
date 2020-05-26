@@ -19,7 +19,11 @@
             {% endif %}
         </div>
         <div><a href="{{path('famille', {'id' : animal.famille.id})}}" class="btn btn-info mt-2">{{animal.famille.libelle}}</a></div>
-
+        <div class="mt-2">
+            {% for continent in animal.continents %}
+                <a href="{{path('continent', {'id' : continent.id})}}" class="btn btn-warning">{{continent.libelle}}</a>
+            {% endfor %}
+        </div>
     </div>
 </div>
 

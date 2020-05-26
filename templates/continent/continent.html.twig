@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Continent{% endblock %}
+
+{% block monTitre %}Découvre les animaux d'{{continent.libelle}}{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        {% for animal in continent.animaux %}
+            <div class="col-6">
+                <div class="row align-items-center">
+                    <div class="cole-12 col-md-6 col-lg-2 text-center">
+                        <img class="img-fluide" src="{{ asset('images/' ~ animal.image) }}" alt="">
+                    </div>
+                    <div class="col text-center">
+                        <h2><a href="{{path('animal',{'id' : animal.id})}}">{{ animal.nom }}</a></h2>
+                        <div>{{ animal.description}}</div>
+                        <div><a href="{{path('famille', {'id' : animal.famille.id})}}" class="btn btn-info mt-2">{{animal.famille.libelle}}</a></div>
+                        <div class="mt-2">
+                            <h6>Cet animal est également présent sur les continents : </h3>
+                            {% for continentAnimal in animal.continents %}
+                                {% if continentAnimal.id != continent.id %}
+                                <a href="{{path('continent', {'id' : continentAnimal.id})}}" class="btn btn-warning mt-2">{{continentAnimal.libelle}}</a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>                       
+        {% endfor %}
+    </div>
+
+
+{% endblock %}
